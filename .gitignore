@@ -1,0 +1,11 @@
+.vscode/
+.myenv/
+HLS/origin/proj_estCFO/
+HLS/origin/*.log
+HLS/resource_opt1/proj_estCFO/
+HLS/resource_opt1/*.log
+HLS/resource_opt2/proj_estCFO/
+HLS/resource_opt2/*.log
+HLS/resource_opt3/
+HLS/analyze_impl_reports.py
+WriteIntro.md
