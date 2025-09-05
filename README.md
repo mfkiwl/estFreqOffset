@@ -321,17 +321,6 @@ vitis_hls -f run_hls.tcl
 cat proj_estCFO/solution1/syn/report/estCFO_csynth.rpt
 ```
 
-#### Synthesize All Implementations for Comparison
-```bash
-cd HLS
-for impl in origin resource_opt1 resource_opt2 resource_opt3 resource_opt4; do
-    echo "Synthesizing $impl..."
-    cd $impl
-    vitis_hls -f run_hls.tcl
-    cd ..
-done
-```
-
 ### Running Tests
 
 #### C Simulation

@@ -1,6 +1,6 @@
 ===============================================
 FPGA Implementation Report Summary
-Generated on: 2025-09-05 18:25:59.403963
+Generated on: 2025-09-05 21:39:17.015627
 ===============================================
 
 RESOURCE UTILIZATION SUMMARY:
@@ -8,6 +8,7 @@ RESOURCE UTILIZATION SUMMARY:
       origin  resource_opt1  resource_opt2  resource_opt3  resource_opt4
 LUT    12393           1543           1260            494            292
 FF     12660           1870           1555            557            589
+DSP        8              8              8              6              6
 BRAM       0              0              4              0              4
 
 TIMING SUMMARY (MHz):
