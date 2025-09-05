@@ -1,0 +1,30 @@
+===============================================
+FPGA Implementation Report Summary
+Generated on: 2025-09-05 18:25:59.403963
+===============================================
+
+RESOURCE UTILIZATION SUMMARY:
+-----------------------------
+      origin  resource_opt1  resource_opt2  resource_opt3  resource_opt4
+LUT    12393           1543           1260            494            292
+FF     12660           1870           1555            557            589
+BRAM       0              0              4              0              4
+
+TIMING SUMMARY (MHz):
+--------------------
+                 origin  resource_opt1  resource_opt2  resource_opt3  resource_opt4
+Target          800.000        800.000        800.000        800.000        800.000
+Post-Synthesis  569.801        569.801        569.801        783.699        637.349
+Post-Route      541.126        550.661        567.859        839.631        637.349
+
+LATENCY SUMMARY (cycles):
+------------------------
+origin           666
+resource_opt1    536
+resource_opt2    798
+resource_opt3    527
+resource_opt4    529
+
+===============================================
+End of Report
+===============================================

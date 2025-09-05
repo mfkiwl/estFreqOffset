@@ -6,6 +6,8 @@ HLS/resource_opt1/proj_estCFO/
 HLS/resource_opt1/*.log
 HLS/resource_opt2/proj_estCFO/
 HLS/resource_opt2/*.log
-HLS/resource_opt3/
 HLS/analyze_impl_reports.py
+HLS/*/proj_*/
+HLS/*/Makefile
+HLS/*.py
 WriteIntro.md
