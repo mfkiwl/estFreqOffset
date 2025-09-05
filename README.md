@@ -5,6 +5,8 @@
 [![Language: C++](https://img.shields.io/badge/Language-C%2B%2B-orange)](https://isocpp.org/)
 [![Platform: FPGA](https://img.shields.io/badge/Platform-FPGA-green)](https://www.xilinx.com/products/silicon-devices/fpga.html)
 [![Status: Research](https://img.shields.io/badge/Status-Research-purple)](https://github.com/rockyco/estFreqOffset)
+[![Target Device](https://img.shields.io/badge/Target-Virtex%20UltraScale%2B%20VU11P-red)](https://www.xilinx.com/products/silicon-devices/fpga/virtex-ultrascale-plus.html)
+[![Clock Frequency](https://img.shields.io/badge/Target%20Freq-800%20MHz-brightgreen)]()
 
 ## 🚀 Quick Start
 
@@ -166,8 +168,10 @@ Comprehensive analysis of five different HLS implementations reveals significant
 | Origin         | 800         | 569.8          | 541.1      | 68% of target  |
 | Resource_opt1  | 800         | 569.8          | 550.7      | 69% of target  |
 | Resource_opt2  | 800         | 569.8          | 567.9      | 71% of target  |
-| Resource_opt3  | 800         | 783.7          | 839.6      | **105% of target** |
+| Resource_opt3  | 800         | 783.7          | **839.6**  | **🎯 105% of target** |
 | Resource_opt4  | 800         | 637.3          | 637.3      | 80% of target  |
+
+**Note**: All implementations target the high-performance Virtex UltraScale+ VU11P FPGA with an aggressive 800 MHz clock constraint. Resource_opt3 is the only implementation that exceeds this demanding timing requirement.
 
 ### Latency Analysis (Clock Cycles)
 
@@ -190,11 +194,11 @@ Performance metrics and resource utilization are automatically analyzed using LL
 
 ### Key Implementation Insights
 
-**Resource_opt3 emerges as the optimal solution** achieving:
-- **98% reduction in LUT usage** (from 12,393 to 494)
-- **96% reduction in FF usage** (from 12,660 to 557)
-- **Only implementation to exceed target frequency** (839.6 MHz vs 800 MHz target)
-- **21% latency improvement** (527 vs 666 cycles)
+**Resource_opt3 emerges as the optimal solution** achieving remarkable results on the Virtex UltraScale+ VU11P:
+- **96% reduction in LUT usage** (from 12,393 to 494) - uses only 0.019% of available LUTs
+- **96% reduction in FF usage** (from 12,660 to 557) - uses only 0.011% of available FFs  
+- **Exceeds aggressive 800 MHz target** (839.6 MHz achieved) - exceptional timing performance
+- **21% latency improvement** (527 vs 666 cycles) - faster execution with fewer resources
 
 **Design Trade-offs Revealed:**
 
@@ -275,7 +279,10 @@ The dramatic difference between implementations demonstrates the impact of optim
 - **Git** - For version control
 
 #### Hardware Requirements
-- **Target FPGA**: Xilinx Zynq-7000, Zynq UltraScale+, or Versal ACAP
+- **Target FPGA**: Xilinx Virtex UltraScale+ VU11P (`xcvu11p-fsgd2104-2-e`)
+  - High-performance FPGA with 2.6M LUTs, 5.2M FFs, 9,216 DSP slices
+  - Optimized for demanding signal processing applications
+- **Target Clock Frequency**: 800 MHz (aggressive timing constraint)
 - **Development Machine**: 16GB+ RAM recommended for synthesis
 
 ### Installation
@@ -388,18 +395,37 @@ create_bd_cell -type ip -vlnv xilinx.com:hls:estCFO:1.0 estCFO_0
 
 ### Real-World Applications
 
-This CFO estimation IP core can be integrated into various wireless communication systems:
+### Target Platform: Virtex UltraScale+ VU11P
 
-- **5G NR Base Stations**: For uplink synchronization
-- **Wi-Fi 6/6E Access Points**: For OFDM symbol alignment
-- **Satellite Communications**: For Doppler shift compensation
-- **IoT Gateways**: For low-power wide-area network (LPWAN) receivers
+The implementations target AMD/Xilinx's flagship **Virtex UltraScale+ VU11P** (`xcvu11p-fsgd2104-2-e`), a cutting-edge FPGA with:
+
+| Resource Type | VU11P Capacity | Resource_opt3 Usage | Utilization |
+|---------------|----------------|----------------------|-------------|
+| **LUTs** | 2,586,000 | 494 | **0.019%** |
+| **FFs** | 5,172,000 | 557 | **0.011%** |
+| **BRAMs** | 4,032 | 0 | 0% |
+| **DSP Slices** | 9,216 | ~12 | 0.13% |
+
+**Key Advantages of VU11P Platform:**
+- **800 MHz Achievement**: Demonstrates capability for high-speed signal processing
+- **Massive Resource Headroom**: Enables deployment of multiple parallel CFO estimators
+- **Future-Proof Design**: Scalable to more complex communication algorithms
+
+### Real-World Applications
+
+This CFO estimation IP core can be integrated into various high-performance wireless communication systems:
+
+- **5G NR Base Stations**: For ultra-low latency uplink synchronization
+- **Wi-Fi 6E/7 Access Points**: For high-throughput OFDM symbol alignment  
+- **mmWave Communications**: For precise frequency offset correction
+- **Satellite Communications**: For Doppler shift compensation in LEO constellations
+- **High-Speed Backhaul**: For carrier-grade wireless infrastructure
 
 ## Key Insights
 
 1. **Critical LLM Discovery - Bit-Width Optimization**: The most significant optimization comes from **data type bit-width reduction** (ap_fixed<22,1> → ap_fixed<10,10>), achieving 55% bit reduction that cascades to 96% resource savings. This demonstrates LLM's ability to identify over-provisioned data types that humans might overlook.
 
-2. **Optimal Implementation Strategy**: Resource_opt3 (DSP-optimized with array partitioning + bit-width reduction) provides the best overall performance with 96% resource reduction and 21% latency improvement while exceeding target frequency.
+2. **Exceptional FPGA Performance**: Resource_opt3 achieves 839.6 MHz on the demanding Virtex UltraScale+ VU11P (exceeding 800 MHz target), while using only 0.019% of available LUTs - demonstrating both timing closure and extreme resource efficiency on a flagship FPGA platform.
 
 3. **Optimization Hierarchy Impact**: 
    - **Bit-width optimization**: 96% resource reduction (resource_opt3)
